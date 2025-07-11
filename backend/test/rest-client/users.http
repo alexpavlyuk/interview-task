@@ -1,0 +1,54 @@
+@baseUrl = http://localhost:3001
+
+### Get all users
+GET {{baseUrl}}/users
+
+### Get specific user
+GET {{baseUrl}}/users/1
+
+### Test with non-existing user (should return 404)
+GET {{baseUrl}}/users/999
+
+### Add a new user
+POST {{baseUrl}}/users
+Content-Type: application/json
+
+{
+  "name": "Test User",
+  "email": "test.user@goodcompany.es",
+  "age": 28
+}
+
+### Test with missing required fields (should return 400)
+POST {{baseUrl}}/users
+Content-Type: application/json
+
+{
+  "name": "Incomplete User"
+}
+
+### Update existing user
+PUT {{baseUrl}}/users/1
+Content-Type: application/json
+
+{
+  "name": "Pelayo",
+  "email": "pelayo@goodcompany.es",
+  "age": 22
+}
+
+### Test with non-existing user (should return 404)
+PUT {{baseUrl}}/users/888
+Content-Type: application/json
+
+{
+  "name": "Non Existing User",
+  "email": "nonexisting@goodcompany.es",
+  "age": 28
+}
+
+### Delete existing user
+DELETE {{baseUrl}}/users/5
+
+### Test with deleted user (should return 404)
+DELETE {{baseUrl}}/users/777
