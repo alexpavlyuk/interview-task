@@ -54,6 +54,15 @@ export const updateUser = async (id: number, userData: Partial<Omit<User, 'id'>>
   }
 };
 
-export const deleteUser = async () => {
-  // TODO: Delete a user by id
+// Delete user by id
+export const deleteUser = async (id: number): Promise<void> => {
+  try {
+    await usersApi.delete(`/${id}`);
+  } catch (error) {
+    console.error(`Error deleting user ${id}:`, error);
+    if (axios.isAxiosError(error) && error.response?.status === 404) {
+      throw new Error('User not found');
+    }
+    throw new Error('Failed to delete user');
+  }
 };

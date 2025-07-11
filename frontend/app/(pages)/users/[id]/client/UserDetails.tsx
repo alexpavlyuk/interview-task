@@ -1,7 +1,10 @@
 "use client";
 
+import { useState } from 'react';
 import { User } from '@/types/user';
+import { deleteUser } from '@services/user';
 import AppButton from '@components/Button';
+import DeleteUserButton from '@components/DeleteUserButton';
 import { useRouter } from 'next/navigation';
 
 interface UserDetailsProps {
@@ -10,6 +13,18 @@ interface UserDetailsProps {
 
 export default function UserDetails({ user }: UserDetailsProps) {
   const router = useRouter();
+  const [isDeleting, setIsDeleting] = useState(false);
+
+  const handleDelete = async (userId: number) => {
+    setIsDeleting(true);
+    try {
+      await deleteUser(userId);
+      router.push('/'); // Redirect to home page after successful deletion
+    } catch (error) {
+      alert('Failed to delete user: ' + (error instanceof Error ? error.message : 'Unknown error'));
+      setIsDeleting(false);
+    }
+  };
 
   return (
     <div className="mx-auto p-6">
@@ -25,9 +40,10 @@ export default function UserDetails({ user }: UserDetailsProps) {
         <AppButton color="yellow" href={`/users/edit/${user.id}`}>
           Edit
         </AppButton>
-        <AppButton color="red">
-          Delete
-        </AppButton>
+        <DeleteUserButton 
+          userId={user.id}
+          onDelete={handleDelete}
+        />
         <AppButton color="gray" href="/">
           Back
         </AppButton>
