@@ -36,8 +36,18 @@ export const getUser = async (id: number): Promise<User> => {
   }
 };
 
-export const createUser = async () => {
-  // TODO: Create a new user
+// Create new user
+export const createUser = async (userData: Omit<User, 'id'>): Promise<User> => {
+  try {
+    const response = await usersApi.post('/', userData);
+    return response.data;
+  } catch (error) {
+    console.error('Error creating user:', error);
+    if (axios.isAxiosError(error) && error.response?.status === 400) {
+      throw new Error('Invalid user data');
+    }
+    throw new Error('Failed to create user');
+  }
 };
 
 // Update user by id
