@@ -1,7 +1,25 @@
-// TODO: Implement all user service functions using Axios
+import axios from 'axios';
+import { User } from '@/types/user';
 
-export const getUsers = async () => {
-  // TODO: Fetch all users from the backend
+const baseURL = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3001";
+
+const usersApi = axios.create({
+  baseURL: `${baseURL}/users`,
+  timeout: 10000,
+  headers: {
+    'Content-Type': 'application/json',
+  },
+});
+
+// Fetch all users
+export const getUsers = async (): Promise<User[]> => {
+  try {
+    const response = await usersApi.get('/');
+    return response.data;
+  } catch (error) {
+    console.error('Error fetching users:', error);
+    throw new Error('Failed to fetch users');
+  }
 };
 
 export const getUser = async () => {
