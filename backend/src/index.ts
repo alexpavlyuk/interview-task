@@ -13,11 +13,13 @@ app.register(userRoutes, { prefix: "/users" });
 
 const start = async () => {
   try {
-    // TODO: Start the Fastify server on port 3001
+    await app.listen({ port: 3001 });
+    console.log('Server running on http://localhost:3001');
   } catch (err) {
     app.log.error(err);
     process.exit(1);
   }
 };
 
-// TODO: Start the server
+// Start the server
+start();
