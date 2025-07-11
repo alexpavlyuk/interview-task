@@ -22,8 +22,18 @@ export const getUsers = async (): Promise<User[]> => {
   }
 };
 
-export const getUser = async () => {
-  // TODO: Fetch a single user by id
+// Fetch single user by id
+export const getUser = async (id: number): Promise<User> => {
+  try {
+    const response = await usersApi.get(`/${id}`);
+    return response.data;
+  } catch (error) {
+    console.error(`Error fetching user ${id}:`, error);
+    if (axios.isAxiosError(error) && error.response?.status === 404) {
+      throw new Error('User not found');
+    }
+    throw new Error('Failed to fetch user');
+  }
 };
 
 export const createUser = async () => {
