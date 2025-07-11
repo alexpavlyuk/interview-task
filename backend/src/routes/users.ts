@@ -36,7 +36,7 @@ export default async function userRoutes(fastify: any, options: any) {
     }
     
     // Generate new ID
-    const newId = Math.max(...users.map(u => u.id)) + 1;
+    const newId = users.length === 0 ? 1 : Math.max(...users.map(u => u.id)) + 1;
     
     const newUser: User = {
       id: newId,
