@@ -17,12 +17,6 @@ const IndexPage = async () => {
             <AppButton color="blue" href="/users/create">
               New user
             </AppButton>
-            <AppButton color="green" href="/users/create">
-              Test
-            </AppButton>
-            <AppButton color="red" disabled href="/users/create">
-              Test
-            </AppButton>
           </div>
         </div>
       </div>
