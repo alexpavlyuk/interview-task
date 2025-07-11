@@ -4,7 +4,7 @@ export default async function userRoutes(fastify: any, options: any) {
   // GET / - Get all users
   fastify.get("/", async (request: any, reply: any) => {
     if (process.env.NODE_ENV !== 'production') {
-      await new Promise(resolve => setTimeout(resolve, 300));
+      await new Promise(resolve => setTimeout(resolve, 1000));
     }
     
     return users;
