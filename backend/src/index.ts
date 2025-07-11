@@ -6,7 +6,9 @@ const app = Fastify();
 
 app.register(cors, {
   origin: "*",
-  // TODO: add more specific CORS settings for production (methods, headers, etc.)
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization"],
+  credentials: true
 });
 
 app.register(userRoutes, { prefix: "/users" });

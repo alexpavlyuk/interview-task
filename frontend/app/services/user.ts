@@ -40,8 +40,18 @@ export const createUser = async () => {
   // TODO: Create a new user
 };
 
-export const updateUser = async () => {
-  // TODO: Update a user by id
+// Update user by id
+export const updateUser = async (id: number, userData: Partial<Omit<User, 'id'>>): Promise<User> => {
+  try {
+    const response = await usersApi.put(`/${id}`, userData);
+    return response.data;
+  } catch (error) {
+    console.error(`Error updating user ${id}:`, error);
+    if (axios.isAxiosError(error) && error.response?.status === 404) {
+      throw new Error('User not found');
+    }
+    throw new Error('Failed to update user');
+  }
 };
 
 export const deleteUser = async () => {
