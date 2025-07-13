@@ -3,9 +3,9 @@ import EditUserForm from '../client/EditUserForm';
 import { notFound } from 'next/navigation';
 
 interface PageProps {
-  params: {
+  params: Promise<{
     id: string;
-  };
+  }>;
 }
 
 export default async function EditUserPage({ params }: PageProps) {
@@ -27,6 +27,7 @@ export default async function EditUserPage({ params }: PageProps) {
       </div>
     );
   } catch (error) {
+    console.error(error)
     notFound();
   }
 }

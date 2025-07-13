@@ -24,7 +24,7 @@ export function UserCardSkeleton() {
 
 export default function UserCard({ user }: UserCardProps) {
   const router = useRouter()
-  const [isDeleting, setIsDeleting] = useState(false)
+  const [, setIsDeleting] = useState(false)
 
   const handleDelete = async (userId: number) => {
     setIsDeleting(true)

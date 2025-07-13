@@ -13,7 +13,7 @@ interface UserDetailsProps {
 
 export default function UserDetails({ user }: UserDetailsProps) {
   const router = useRouter();
-  const [isDeleting, setIsDeleting] = useState(false);
+  const [, setIsDeleting] = useState(false);
 
   const handleDelete = async (userId: number) => {
     setIsDeleting(true);

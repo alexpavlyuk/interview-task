@@ -3,9 +3,9 @@ import UserDetails from './client/UserDetails';
 import { notFound } from 'next/navigation';
 
 interface PageProps {
-  params: {
+  params: Promise<{
     id: string;
-  };
+  }>;
 }
 
 export default async function UserPage({ params }: PageProps) {
@@ -28,6 +28,7 @@ export default async function UserPage({ params }: PageProps) {
       </div>
     );
   } catch (error) {
+    console.error(error)
     notFound();
   }
 }

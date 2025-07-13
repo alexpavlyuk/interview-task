@@ -18,6 +18,7 @@ export default function DeleteUserButton({ userId, onDelete }: DeleteUserButtonP
         try {
           await onDelete(userId)
         } catch (error) {
+          console.error(error)
           setIsDeleting(false)
         }
       }

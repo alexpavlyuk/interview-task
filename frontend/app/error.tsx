@@ -7,7 +7,7 @@ interface ErrorProps {
   reset: () => void
 }
 
-export default function Error({ error, reset }: ErrorProps) {
+export default function Error({ error }: ErrorProps) {
 
   return (
     <div className="max-w-4xl mx-auto p-4">

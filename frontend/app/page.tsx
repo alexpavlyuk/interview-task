@@ -2,6 +2,8 @@ import UserList from '@components/UserList'
 import { getUsers } from '@services/user'
 import AppButton from '@components/Button'
 
+export const dynamic = 'force-dynamic'
+
 const IndexPage = async () => {
   const users = await getUsers();
 
