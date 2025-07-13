@@ -23,7 +23,7 @@ export default async function UserPage({ params }: PageProps) {
 
     return (
       <div className="max-w-2xl mx-auto pt-20">
-        <h1 className="text-2xl font-bold text-gray-900 mb-6 max-w-md px-6">User</h1>
+        <h1 className="text-2xl font-bold text-gray-800 mb-6 max-w-md px-6">User</h1>
         <UserDetails user={user} />
       </div>
     );

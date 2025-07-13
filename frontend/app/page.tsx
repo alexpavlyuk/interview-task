@@ -12,7 +12,7 @@ const IndexPage = async () => {
       <div className="mb-6 mt-18">
         <div className="flex justify-between items-center">
           <div>
-            <h1 className="text-3xl font-bold text-gray-900">Culpass Users</h1>
+            <h1 className="text-3xl font-bold text-gray-800">Culpass Users</h1>
           </div>
 
           <div className="flex gap-2">

@@ -20,10 +20,36 @@ export default function EditUserForm({ user }: EditUserFormProps) {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
+  const isValidEmail = (email: string) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
     setError(null);
+
+    // Validate name
+    if (formData.name.trim().length < 3) {
+      setError('Name must be at least 3 characters long');
+      setIsLoading(false);
+      return;
+    }
+
+    // Validate email
+    if (!isValidEmail(formData.email)) {
+      setError('Please enter a valid email address');
+      setIsLoading(false);
+      return;
+    }
+
+    // Validate age
+    if (formData.age < 1 || formData.age > 120) {
+      setError('Age must be between 1 and 120 years');
+      setIsLoading(false);
+      return;
+    }
 
     try {
       await updateUser(user.id, formData);
